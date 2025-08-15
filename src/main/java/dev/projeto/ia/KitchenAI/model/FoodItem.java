@@ -28,6 +28,9 @@ public class FoodItem {
     @Column(name = "validity")
     private LocalDate validity;
 
+    @Version
+    private Long version;
+
     public Long getId() {
         return id;
     }
@@ -66,5 +69,13 @@ public class FoodItem {
 
     public void setValidity(LocalDate validity) {
         this.validity = validity;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }
