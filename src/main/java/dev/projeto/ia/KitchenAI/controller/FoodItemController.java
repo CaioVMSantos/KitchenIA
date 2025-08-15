@@ -33,7 +33,7 @@ public class FoodItemController {
     }
 
     @GetMapping("/listar/{id}")
-    public ResponseEntity<?> getFoodItensId(@RequestParam Long id){
+    public ResponseEntity<?> getFoodItensId(@PathVariable Long id){
         FoodItem foodId = foodItemService.findById(id);
         if(foodId != null){
             return ResponseEntity.ok(foodId);
