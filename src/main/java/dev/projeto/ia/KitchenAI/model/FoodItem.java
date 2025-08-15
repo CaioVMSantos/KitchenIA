@@ -17,7 +17,7 @@ public class FoodItem {
     private String name;
     private String category; //pode ser trocado por Enum
     private Integer quantity;
-    private LocalDate validate;
+    private LocalDate validity;
 
     public Long getId() {
         return id;
@@ -51,11 +51,11 @@ public class FoodItem {
         this.quantity = quantity;
     }
 
-    public LocalDate getValidate() {
-        return validate;
+    public LocalDate getValidity() {
+        return validity;
     }
 
-    public void setValidate(LocalDate validate) {
-        this.validate = validate;
+    public void setValidity(LocalDate validity) {
+        this.validity = validity;
     }
 }
