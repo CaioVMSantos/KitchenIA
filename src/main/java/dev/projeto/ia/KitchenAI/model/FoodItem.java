@@ -13,10 +13,19 @@ public class FoodItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "category")
     private String category; //pode ser trocado por Enum
+
+    @Column(name = "quantity")
     private Integer quantity;
+
+    @Column(name = "validity")
     private LocalDate validity;
 
     public Long getId() {
