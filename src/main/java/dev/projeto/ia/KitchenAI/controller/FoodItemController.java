@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/food")
@@ -47,14 +48,18 @@ public class FoodItemController {
     //UPDATE
     @PutMapping("atualizar/{id}")
     public ResponseEntity<String> updateItem (@PathVariable Long id, @RequestBody FoodItem foodItem) {
-        if(foodItemService.itemsList() != null){
-            foodItemService.alterItem(id, foodItem);
-            return ResponseEntity.status(HttpStatus.OK).
-                    body("Item alterado com sucesso");
+        FoodItem existingItem = foodItemService.findById(id);
+        if(existingItem != null){
+            existingItem.setName(foodItem.getName());
+            existingItem.setCategory(foodItem.getCategory());
+            existingItem.setQuantity(foodItem.getQuantity());
+            existingItem.setValidity(foodItem.getValidity());
+            foodItemService.saveItem(existingItem);
+            return ResponseEntity.ok("Item atualizado com sucesso!");
         }
         else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                    body("Item com id " +id+ " não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Item com id " + id + " não encontrado!");
         }
     }
 

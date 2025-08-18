@@ -29,7 +29,7 @@ public class FoodItem {
     private LocalDate validity;
 
     @Version
-    private Long version;
+    private Long version;  
 
     public Long getId() {
         return id;
