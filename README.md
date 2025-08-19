@@ -123,5 +123,3 @@ http://localhost:8080/swagger-ui.html
 * [PostgreSQL](https://www.postgresql.org/)
 * [Swagger OpenAPI](https://swagger.io/tools/open-source/openapi-generator/)
 * [Gemini API](https://ai.google.dev/)
-
-```
