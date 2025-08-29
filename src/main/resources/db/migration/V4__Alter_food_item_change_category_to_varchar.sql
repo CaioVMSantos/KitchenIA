@@ -1,0 +1,2 @@
+ALTER TABLE food_item
+ALTER COLUMN category TYPE VARCHAR(255);

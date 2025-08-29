@@ -1,4 +1,4 @@
 package dev.projeto.ia.KitchenAI.enums;
 
-public class categoria {
+public enum Foodcategory {
 }
