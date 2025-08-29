@@ -1,5 +1,6 @@
 package dev.projeto.ia.KitchenAI.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import dev.projeto.ia.KitchenAI.model.FoodItem;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
@@ -45,7 +46,15 @@ public class GeminiService {
                 .header("X-goog-api-key", geminiApiKey) //geminiApiKey - está sendo usada como variável de ambiente por segurança.
                 .bodyValue(buildRequest) //preciso entregar um body com o prompt, por isso crio outro metodo pra fazer isso.
                 .retrieve() //executa a requisição Http.
-                .bodyToMono(String.class);
+                .bodyToMono(JsonNode.class) // 1. Pede a resposta como um objeto JSON (JsonNode)
+                .map(responseNode -> responseNode
+                        .path("candidates") // 2. Navega até a lista de "candidates"
+                        .get(0)             // 3. Pega o primeiro item da lista
+                        .path("content")    // 4. Acessa o objeto "content"
+                        .path("parts")      // 5. Acessa a lista de "parts"
+                        .get(0)             // 6. Pega o primeiro item da lista
+                        .path("text")       // 7. Acessa o campo "text"
+                        .asText("Desculpe, não foi possível gerar uma receita."));
     }
 
 
