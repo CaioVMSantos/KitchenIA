@@ -1,5 +1,6 @@
 package dev.projeto.ia.KitchenAI.controller;
 
+import dev.projeto.ia.KitchenAI.enums.FoodCategory;
 import dev.projeto.ia.KitchenAI.model.FoodItem;
 import dev.projeto.ia.KitchenAI.service.FoodItemService;
 import org.springframework.http.HttpStatus;
@@ -75,6 +76,11 @@ public class FoodItemController {
                     .body("Item com id " +id+ " não encontrado!");
         }
 
+    }
+
+    @GetMapping("/listarcategorias")
+    public ResponseEntity<FoodCategory[]> getFoodCategories(){
+        return ResponseEntity.ok(FoodCategory.values());
     }
 
 

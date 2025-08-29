@@ -1,4 +1,5 @@
 package dev.projeto.ia.KitchenAI.model;
+import dev.projeto.ia.KitchenAI.enums.FoodCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,8 @@ public class FoodItem {
     private String name;
 
     @Column(name = "category")
-    private String category; //pode ser trocado por Enum
+    @Enumerated(EnumType.STRING)
+    private FoodCategory category; //pode ser trocado por Enum
 
     @Column(name = "quantity")
     private Integer quantity;
@@ -47,14 +49,6 @@ public class FoodItem {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -77,5 +71,13 @@ public class FoodItem {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public FoodCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(FoodCategory category) {
+        this.category = category;
     }
 }
