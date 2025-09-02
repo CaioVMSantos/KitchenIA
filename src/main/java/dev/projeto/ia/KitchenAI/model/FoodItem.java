@@ -2,7 +2,10 @@ package dev.projeto.ia.KitchenAI.model;
 import dev.projeto.ia.KitchenAI.enums.FoodCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 
@@ -10,6 +13,8 @@ import java.time.LocalDate;
 @Table(name = "food_item")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class FoodItem {
 
     @Id
@@ -22,7 +27,7 @@ public class FoodItem {
 
     @Column(name = "category")
     @Enumerated(EnumType.STRING)
-    private FoodCategory category; //pode ser trocado por Enum
+    private FoodCategory category;
 
     @Column(name = "quantity")
     private Integer quantity;
@@ -31,53 +36,5 @@ public class FoodItem {
     private LocalDate validity;
 
     @Version
-    private Long version;  
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public LocalDate getValidity() {
-        return validity;
-    }
-
-    public void setValidity(LocalDate validity) {
-        this.validity = validity;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public FoodCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(FoodCategory category) {
-        this.category = category;
-    }
+    private Long version;
 }

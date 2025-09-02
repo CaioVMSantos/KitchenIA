@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/food")
@@ -20,14 +19,12 @@ public class FoodItemController {
         this.foodItemService = foodItemService;
     }
 
-    //POST
     @PostMapping("/criar")
     public ResponseEntity<FoodItem> createFood(@RequestBody FoodItem foodItem) {
             FoodItem salvo = foodItemService.saveItem(foodItem);
             return ResponseEntity.ok(salvo);
     }
 
-    //GET
     @GetMapping("/listar")
     public ResponseEntity<List<FoodItem>> getFoodItems() {
             List<FoodItem> listar = foodItemService.itemsList();
@@ -35,7 +32,7 @@ public class FoodItemController {
     }
 
     @GetMapping("/listar/{id}")
-    public ResponseEntity<?> getFoodItensId(@PathVariable Long id){
+    public ResponseEntity<?> getFoodItemsId(@PathVariable Long id){
         FoodItem foodId = foodItemService.findById(id);
         if(foodId != null){
             return ResponseEntity.ok(foodId);
@@ -46,7 +43,6 @@ public class FoodItemController {
         }
     }
 
-    //UPDATE
     @PutMapping("atualizar/{id}")
     public ResponseEntity<String> updateItem (@PathVariable Long id, @RequestBody FoodItem foodItem) {
         FoodItem existingItem = foodItemService.findById(id);
@@ -64,7 +60,6 @@ public class FoodItemController {
         }
     }
 
-    //DELETE
     @DeleteMapping("deletar/{id}")
     public ResponseEntity<String> deleteItem(@PathVariable Long id){
         if(foodItemService.itemsList() != null){

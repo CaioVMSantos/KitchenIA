@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/gemini")
 public class RecipeController {
 
-    private GeminiService geminiService;
-    private FoodItemService foodItemService;
+    private final GeminiService geminiService;
+    private final FoodItemService foodItemService;
 
     public RecipeController(GeminiService geminiService, FoodItemService foodItemService) {
         this.geminiService = geminiService;
@@ -23,7 +22,7 @@ public class RecipeController {
     }
 
     @GetMapping("/generateRecipe")
-    public Mono<ResponseEntity<String>> generateRecipe(){ //Mono: Assíncrono, faz uma especie de promessa que diz que ao enviar algo, algo irá retornar, mesmo que não seja no mesmo periodo de tempo.
+    public Mono<ResponseEntity<String>> generateRecipe(){
         List<FoodItem> foodItems = foodItemService.itemsList();
         return geminiService.generateRecipe(foodItems)
                 .map(recipe -> ResponseEntity.ok().body(recipe))

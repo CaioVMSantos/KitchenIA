@@ -16,18 +16,15 @@ public class FoodItemService {
         this.repository = repository;
     }
 
-    //salvar itens
     public FoodItem saveItem(FoodItem foodItem) {
         return repository.save(foodItem);
     }
 
-    //listar itens
-    public List<FoodItem> itemsList() {
+        public List<FoodItem> itemsList() {
         return repository.findAll();
     }
 
-    //alterar item
-    public FoodItem alterItem (Long id, FoodItem foodItem) {
+        public FoodItem alterItem (Long id, FoodItem foodItem) {
         Optional<FoodItem> optionalFoodItem = repository.findById(id); //retorna o optional com objeto ou nulo.
         if (optionalFoodItem.isPresent()) {
             foodItem.setId(id);
@@ -36,8 +33,7 @@ public class FoodItemService {
         return null;
     }
 
-    //listar por id
-    public FoodItem findById(Long id) {
+        public FoodItem findById(Long id) {
         Optional<FoodItem> optionalFoodItem = repository.findById(id);
         if (optionalFoodItem.isPresent()) {
             return optionalFoodItem.get();
@@ -45,8 +41,7 @@ public class FoodItemService {
         return null;
     }
 
-    //deletar item
-    public void deleteItem(Long id){
+        public void deleteItem(Long id){
         repository.deleteById(id);
     }
 

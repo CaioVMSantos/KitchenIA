@@ -11,7 +11,7 @@ public class WebClientConfig {
     @Value("${gemini.api.url:https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent}")
     private String geminiUrl;
 
-    @Bean //Um bean é basicamente uma anotação que gera um contexto, eu estou dizendo ao Spring que esse metodo tem um contexto, e que vem de algo externo.
+    @Bean
     public WebClient webClient(WebClient.Builder builder) {
         return builder.baseUrl(geminiUrl).build();
     }
