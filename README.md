@@ -1,32 +1,34 @@
+
+---
+
 # KitchenIA - Back-end
 
 **Aplicação back-end em Java com Spring Boot e Inteligência Artificial**
 
-O **KitchenIA** é uma aplicação que integra um banco de dados de alimentos com a **API Gemini IA** para gerar **receitas personalizadas**.  
+O **KitchenIA** é uma aplicação que integra um banco de dados de alimentos com a **API Gemini IA** para gerar **receitas personalizadas**.
 A ideia é que, a partir dos alimentos cadastrados pelo usuário, a aplicação sugira receitas inteligentes e adaptadas às preferências de cada pessoa.
 
 ---
 
-## Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas
 
-- **Java 17+**
-- **Spring Boot**
-- **Spring Web**
-- **Spring Data JPA**
-- **Spring Security** (a ser implementado)
-- **Spring AI** (para integração com IA)
-- **Gemini IA API**
-- **Banco de Dados**
-  - [x] **H2** (atual)
-  - [ ] **PostgreSQL** (planejado)
-- **Swagger / OpenAPI** (documentação da API)
+* **Java 17+**
+* **Spring Boot**
+* **Spring Web**
+* **Spring Data JPA**
+* **Spring Security** (a ser implementado)
+* **Spring AI**
+* **Gemini IA API**
+* **Banco de Dados**
+
+    * **PostgreSQL**
+* **Swagger / OpenAPI** (documentação da API)
 
 ---
 
 ## 📂 Estrutura do Projeto
 
 ```
-
 src/
 ├── main/
 │   ├── java/dev/projeto/kitchenia
@@ -38,25 +40,45 @@ src/
 │   └── resources/
 │        ├── application.properties  # Configurações do projeto
 │        └── data.sql                # Dados iniciais (mock)
-
-````
+```
 
 ---
 
-## Configuração do Projeto
+## ⚙️ Configuração do Projeto
 
 ### Pré-requisitos
 
-- [Java 17+](https://adoptium.net/)
-- [Maven](https://maven.apache.org/)
-- [PostgreSQL](https://www.postgresql.org/) (planejado)
+* [Java 17+](https://adoptium.net/)
+* [Maven](https://maven.apache.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Docker](https://www.docker.com/) (opcional, para rodar o banco)
 
 ### Clonar o Repositório
 
 ```bash
 git clone https://github.com/CaioVMSantos/KitchenIA.git
 cd KitchenIA
-````
+```
+
+### Configurar Banco de Dados
+
+No arquivo `application.properties`, configure as credenciais do seu PostgreSQL:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/kitchenia
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+```
+
+> 💡 Caso use **Docker**, você pode subir o banco com:
+
+```bash
+docker run --name kitchenia-db -e POSTGRES_DB=kitchenia -e POSTGRES_USER=seu_usuario -e POSTGRES_PASSWORD=sua_senha -p 5432:5432 -d postgres
+```
+
+---
 
 ### Rodar a Aplicação
 
@@ -72,54 +94,36 @@ http://localhost:8080
 
 ---
 
-## Banco de Dados
+## 🗄️ Banco de Dados
 
-### H2 (padrão atual)
+A aplicação utiliza **PostgreSQL** como banco principal.
+Scripts de dados iniciais podem ser configurados em `src/main/resources/data.sql`.
 
-* Console do H2:
+---
 
-  ```
-  http://localhost:8080/h2-console
-  ```
-* Credenciais padrão configuradas em `application.properties`.
+## 📖 Documentação da API (A fazer)
 
-  ---
-
-## Documentação da API (A fazer)
-Com o **Swagger** será possível visualizar e testar os endpoints diretamente no navegador.
-
-Acesse em:
+Com o **Swagger** será possível visualizar e testar os endpoints diretamente no navegador:
 
 ```
 http://localhost:8080/swagger-ui.html
 ```
-
 ---
 
-## Roadmap Detalhado
-
-* [x] Implementar CRUD de alimentos com **Spring Data JPA**
-* [x] Integrar com a **API Gemini IA**
-* [ ] Migrar banco de dados de **H2 → PostgreSQL**
-* [ ] Implementar **Spring AI** para melhorar as interações de IA
-* [ ] Adicionar **Spring Security** (autenticação/autorização)
-* [ ] Criar **documentação de endpoints com Swagger**
-* [ ] Expor API pública para integração com o front-end
-* [ ] Implementar testes unitários e de integração
-
----
-
-## Integrações
+## 🔗 Integrações
 
 * **Front-end Angular:** [KitchenIA Front-end](https://github.com/CaioVMSantos/Angular-Kitchen-Ia)
 * **Back-end Java:** [KitchenIA Back-end](https://github.com/CaioVMSantos/KitchenIA)
 
 ---
 
-## 📚 Recursos e Documentações Utilizadas e Relevantes
+## 📚 Recursos e Documentações Relevantes
 
 * [Spring Boot Documentation](https://spring.io/projects/spring-boot)
 * [Spring AI](https://docs.spring.io/spring-ai/reference/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Swagger OpenAPI](https://swagger.io/tools/open-source/openapi-generator/)
 * [Gemini API](https://ai.google.dev/)
+
+---
+
